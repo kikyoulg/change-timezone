@@ -1,0 +1,31 @@
+# permissions for end users to edit timezones.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: timezone-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: change-timezone
+    app.kubernetes.io/part-of: change-timezone
+    app.kubernetes.io/managed-by: kustomize
+  name: timezone-editor-role
+rules:
+- apiGroups:
+  - apps.timezone.com
+  resources:
+  - timezones
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps.timezone.com
+  resources:
+  - timezones/status
+  verbs:
+  - get

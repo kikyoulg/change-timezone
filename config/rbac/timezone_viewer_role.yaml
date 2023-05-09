@@ -1,0 +1,27 @@
+# permissions for end users to view timezones.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: timezone-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: change-timezone
+    app.kubernetes.io/part-of: change-timezone
+    app.kubernetes.io/managed-by: kustomize
+  name: timezone-viewer-role
+rules:
+- apiGroups:
+  - apps.timezone.com
+  resources:
+  - timezones
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps.timezone.com
+  resources:
+  - timezones/status
+  verbs:
+  - get
